@@ -12,7 +12,7 @@
     "deploy-mainnet": "cd deploy && npx shipit mainnet deploy"
   },
   "dependencies": {
-    "@ensdomains/ens": "^0.3.11",
+    "@ensdomains/ens": "^0.4.4",
     "@gnosis.pm/safe-contracts": "^1.0.0",
     "@hapi/boom": "^7.4.3",
     "@linkdrop/safe-module-contracts": "^0.0.2",
