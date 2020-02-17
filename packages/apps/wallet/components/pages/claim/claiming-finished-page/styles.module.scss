@@ -1,0 +1,48 @@
+@import "variables";
+
+.title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.button {
+  margin-bottom: 15px;
+  max-width: 300px;
+  background: $dbBlue;
+}
+
+.terms {
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: $textGreyColor;
+
+  a {
+    color: $textGreyColor;
+  }
+
+}
+
+.tokenIcon {
+  margin-bottom: 15px;
+  width: 80px;
+  height: 80px;
+}
+
+.tokenIconNft {
+  margin-bottom: 15px;
+  width: 140px;
+  height: 140px;
+}
+
+.icon {
+  max-width: 100%;
+}
+
+.wallet {
+  font-size: 18px;
+}
+
+.wallet span {
+  font-family: 'Inter-Medium';
+}

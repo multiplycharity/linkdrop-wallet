@@ -1,0 +1,48 @@
+{
+    "name": "@linkdrop-widget/contracts",
+    "version": "0.0.6",
+    "description": "Smart contracts for Linkdrop widget",
+    "main": "index.js",
+    "author": "Amir Jumaniyazov <amir@linkdrop.io>",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "npx waffle",
+        "test": "mocha --file ./test/register.js --recursive"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LinkdropHQ/linkdrop-widget.git"
+    },
+    "bugs": {
+        "url": "https://github.com/LinkdropHQ/linkdrop-widget/issues"
+    },
+    "dependencies": {
+        "@gnosis.pm/safe-contracts": "^1.0.0",
+        "ethereum-waffle": "^2.0.12",
+        "ethers": "^4.0.30",
+        "expect": "^24.9.0",
+        "openzeppelin-solidity": "^2.3.0",
+        "solc": "^0.5.9",
+        "truffle": "4.1.15"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.4.4",
+        "@babel/core": "^7.4.5",
+        "@babel/node": "^7.4.5",
+        "@babel/polyfill": "^7.4.4",
+        "@babel/preset-env": "^7.4.5",
+        "@babel/register": "^7.6.2",
+        "chai": "^4.2.0",
+        "mocha": "^6.2.1",
+        "truffle": "4.1.15"
+    },
+    "babel": {
+        "extends": "../../babel.config.js"
+    },
+    "standard": {
+        "parser": "babel-eslint"
+    }
+}

@@ -1,0 +1,85 @@
+import React from 'react'
+import { actions, translate } from 'decorators'
+import styles from './styles.module'
+import { Input, Button, Icons } from '@linkdrop/ui-kit'
+import classNames from 'classnames'
+import variables from 'variables'
+
+@actions(({ user: { loading, contractAddress }, tokens: { transactionStatus, transactionId }, assets: { items } }) => ({ transactionStatus, transactionId, items, loading, contractAddress }))
+@translate('pages.send')
+class Header extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      finished: false
+    }
+  }
+
+  componentWillReceiveProps ({ transactionStatus: status }) {
+    const { transactionStatus: prevStatus } = this.props
+    if (status != null && status === 'sent' && prevStatus === null) {
+      this.setState({
+        finished: true
+      }, _ => {
+        this.actions().tokens.setTransactionStatus({ transactionStatus: null })
+        this.finishTimeout = window.setTimeout(_ => this.setState({
+          finished: false
+        }, _ => {
+          window.location.href = '/#/'
+        }), 3000)
+      })
+    }
+  }
+
+  componentWillUnmount () {
+    this.finishTimeout && window.clearTimeout(this.finishTimeout)
+  }
+
+  render () {
+    const { sendTo, onSend, tokenType, amount, onChange, loading, error, transactionId } = this.props
+    const { finished } = this.state
+    return <div className={classNames(styles.container, { [styles.loading]: loading && !transactionId })}>
+      <div className={styles.content}>
+        <div className={styles.amount}>
+          <Input
+            type='number'
+            numberInput
+            placeholder={tokenType === 'erc721' ? 'NFT' : '0'}
+            value={tokenType === 'erc721' ? '' : amount}
+            disabled={tokenType === 'erc721' || loading}
+            onChange={({ value }) => onChange({ amount: value })}
+            className={classNames(styles.input, {
+              [styles.empty]: amount === null || Number(amount) === 0,
+              [styles.errored]: error && error === this.t('errors.balance'),
+              [styles.erc721]: tokenType === 'erc721'
+            })}
+          />
+        </div>
+        <div className={styles.controls}>
+          {this.renderButton({ tokenType, error, loading, sendTo, amount, onSend, finished })}
+        </div>
+      </div>
+    </div>
+  }
+
+  renderButton ({ loading, tokenType, sendTo, amount, onSend, finished, error }) {
+    if (finished) {
+      return <Button
+        disabled
+        className={styles.finishedButton}
+      >
+        <Icons.CheckSmall fill={variables.greenColor} stroke={variables.greenColor} />
+      </Button>
+    }
+    return <Button
+      loading={loading}
+      disabled={(error || !sendTo || sendTo.length === 0 || Number(amount) === 0 || loading) && tokenType !== 'erc721'}
+      className={styles.button}
+      onClick={_ => onSend && onSend()}
+    >
+      {this.t('buttons.send')}
+    </Button>
+  }
+}
+
+export default Header

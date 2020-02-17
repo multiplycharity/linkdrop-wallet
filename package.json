@@ -1,0 +1,36 @@
+{
+  "name": "@linkdrop-widget/monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "repository": "https://github.com/LinkdropHQ/linkdrop-widget-monorepo.git",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "packages/apps/*"
+    ],
+    "nohoist": [
+      "**/truffle",
+      "**/truffle/**"
+    ]
+  },
+  "scripts": {
+    "build": "yarn wsrun --stages --exclude-missing build",
+    "build:contracts": "cd packages/contracts && yarn build",
+    "build:sdk": "cd packages/sdk && yarn build",
+    "test": "yarn wsrun --stages --exclude-missing test",
+    "test:contracts": "cd packages/contracts && yarn test",
+    "build:widget-provider": "babel packages/provider/src -d packages/provider/dist",
+    "server": "npx babel-node packages/server/index"
+  },
+  "dependencies": {
+    "wsrun": "^5.0.2"
+  },
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}

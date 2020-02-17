@@ -1,0 +1,31 @@
+@import "variables";
+
+.content {
+  width: 300px;
+}
+
+.tokenPreviewTitle {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.loading {
+  margin-bottom: 15px;
+}
+
+.tokenIcon {
+  margin-bottom: 15px;
+  width: 80px;
+  height: 80px;
+}
+
+.tokenIconNft {
+  margin-bottom: 15px;
+  width: 140px;
+  height: 140px;
+}
+
+.icon {
+  max-width: 100%;
+}
