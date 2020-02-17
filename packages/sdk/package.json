@@ -13,7 +13,7 @@
     "extends": "../../babel.config.js"
   },
   "dependencies": {
-    "@ensdomains/ens": "^0.3.11",
+    "@ensdomains/ens": "^0.4.4",
     "@gnosis.pm/safe-contracts": "^1.0.0",
     "@linkdrop-widget/contracts": "^0.0.6",
     "@linkdrop/contracts": "^1.0.87",
