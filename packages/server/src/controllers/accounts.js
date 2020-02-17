@@ -5,7 +5,6 @@ import wrapAsync from '../utils/asyncWrapper'
 import accountsService from '../services/accountsService'
 import authService from '../services/authService'
 import relayerWalletService from '../services/relayerWalletService'
-import snarkArtService from '../services/snarkArtService'
 
 export const exists = wrapAsync(async (req, res, next) => {
   try {
@@ -55,9 +54,6 @@ export const register = wrapAsync(async (req, res, next) => {
       safe: walletAddress
     })
 
-    // register with snark art
-    snarkArtService.register({ email, address: walletAddress })
-
     await _setCookie(account._id, res)
     const sessionKey = await authService.getSessionKey(email)
 
@@ -96,9 +92,6 @@ export const login = wrapAsync(async (req, res, next) => {
 
     await _setCookie(account._id, res)
     const sessionKey = await authService.getSessionKey(email)
-
-    // register with snark art
-    snarkArtService.register({ email, address: account.safe })
 
     res.json({
       encryptedEncryptionKey: account.encryptedEncryptionKey,
